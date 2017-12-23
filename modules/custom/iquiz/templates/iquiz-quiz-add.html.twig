@@ -1,0 +1,29 @@
+{% if question_types is not empty %}
+    <dl>
+        {% for question_type in question_types %}
+            <dt>{{ question_type.add_link }}</dt>
+            <dd>{{ question_type.description }}</dd>
+        {% endfor %}
+    </dl>
+{% else %}
+    <p>
+        {% set create_question_type = path('/admin/iquiz/question-types/add') %}
+        {% trans %}
+        You have not created any question types yet. Go to the <a href="{{ create_question_type }}">question type
+            creation page</a> to add a new question type.
+        {% endtrans %}
+    </p>
+{% endif %}
+{% if question_add_form is not empty %}
+    <dl>
+        {{ question_add_form }}
+    </dl>
+{% endif %}
+{% if quiz_questions is not empty %}
+    <dl>
+        {% for quiz_question in quiz_questions %}
+            <dt>{{ quiz_question.question_number }}:{{ quiz_question.question }}({{ quiz_question.score }}分)</dt>
+            <dd>{{ quiz_question.options|nl2br }}</dd>
+        {% endfor %}
+    </dl>
+{% endif %}

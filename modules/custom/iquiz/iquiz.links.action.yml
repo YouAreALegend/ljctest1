@@ -1,0 +1,17 @@
+iquiz.question_type_add:
+  route_name: iquiz.question_type_add
+  title: 'Add question type'
+  appears_on:
+    - entity.iquiz_question_type.collection
+
+iquiz_question.add_page:
+  route_name: iquiz_question.add_page
+  title: 'Add question'
+  appears_on:
+    - entity.iquiz_question.collection
+
+iquiz.quiz_type_add:
+  route_name: entity.iquiz_quiz_type.add_form
+  title: 'Add quiz type'
+  appears_on:
+    - entity.iquiz_quiz_type.collection

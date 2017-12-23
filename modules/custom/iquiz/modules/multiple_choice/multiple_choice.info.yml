@@ -1,0 +1,10 @@
+name: 'Multiple choice'
+type: module
+core: 8.x
+package: iQuiz
+description: 'Provide multiple chioce question bundle for iQuiz'
+dependencies:
+  - field
+  - iquiz
+  - text
+  - user

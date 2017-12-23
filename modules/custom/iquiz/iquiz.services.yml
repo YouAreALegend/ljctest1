@@ -1,0 +1,4 @@
+services:
+  plugin.manager.iquiz.question_type_plugin:
+    class: Drupal\iquiz\QuestionTypePluginManager
+    parent: default_plugin_manager

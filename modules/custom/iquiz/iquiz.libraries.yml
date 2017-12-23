@@ -1,0 +1,7 @@
+iquiz.jQuery:
+  js:
+    js/iquiz.js: {}
+  dependencies:
+     - core/jquery
+     - core/jquery.once
+     - core/ajax

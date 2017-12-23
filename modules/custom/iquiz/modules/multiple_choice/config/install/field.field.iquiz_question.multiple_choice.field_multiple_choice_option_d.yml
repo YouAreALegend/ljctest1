@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.iquiz_question.field_multiple_choice_option_d
+    - iquiz.iquiz_question_type.multiple_choice
+id: iquiz_question.multiple_choice.field_multiple_choice_option_d
+field_name: field_multiple_choice_option_d
+entity_type: iquiz_question
+bundle: multiple_choice
+label: 'Option D'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

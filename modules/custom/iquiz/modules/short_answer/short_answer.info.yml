@@ -1,0 +1,10 @@
+name: 'Short Answer'
+type: module
+core: 8.x
+package: iQuiz
+description: 'Provide short answer question bundle for iQuiz'
+dependencies:
+  - field
+  - iquiz
+  - text
+  - user

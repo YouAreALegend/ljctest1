@@ -1,0 +1,16 @@
+# ===========A quiz tabs group.Including view quiz,edit quiz,list questions added to this quiz.===========
+iquiz.quiz.tab_view:
+  title: 'View'
+  route_name: entity.iquiz_quiz.canonical
+  base_route: entity.iquiz_quiz.canonical
+  weight: 1
+iquiz.quiz.tab_edit:
+  title: 'Edit'
+  route_name: entity.iquiz_quiz.edit_form
+  base_route: entity.iquiz_quiz.canonical
+  weight: 2
+iquiz.quiz.tab_questions:
+  title: 'Questions'
+  route_name: iquiz.quiz.questions
+  base_route: entity.iquiz_quiz.canonical
+  weight: 3

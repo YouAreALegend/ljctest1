@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.iquiz_question.field_single_choice_option_c
+    - iquiz.iquiz_question_type.single_choice
+id: iquiz_question.single_choice.field_single_choice_option_c
+field_name: field_single_choice_option_c
+entity_type: iquiz_question
+bundle: single_choice
+label: 'Option C'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

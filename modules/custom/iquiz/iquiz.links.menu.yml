@@ -1,0 +1,55 @@
+iquiz.admin_iquiz:
+  title: 'iQuiz'
+  route_name: iquiz.admin_iquiz
+  parent: system.admin
+  weight: 99
+
+# ===========iquiz backstage entry page============
+iquiz.generate_random_quiz:
+  route_name: iquiz.generate_random_quiz
+  title: 'Generate randome quiz'
+  parent: iquiz.admin_iquiz
+  weight: 1
+
+iquiz.quiz.add_page:
+  route_name: iquiz.quiz.add_page
+  title: 'Add quiz'
+  parent: iquiz.admin_iquiz
+  weight: 2
+
+entity.iquiz_quiz.collection:
+  route_name: entity.iquiz_quiz.collection
+  title: 'iQuiz Quiz list'
+  parent: iquiz.admin_iquiz
+  weight: 3
+
+iquiz.configuration:
+  route_name: iquiz.configuration
+  title: 'iQuiz configuration'
+  parent: iquiz.admin_iquiz
+  weight: 4
+
+# ===========iquiz Configuration page============
+entity.iquiz_question_type.collection:
+  route_name: entity.iquiz_question_type.collection
+  title: 'iQuiz question type'
+  parent: iquiz.configuration
+  weight: 1
+
+entity.iquiz_question.collection:
+  route_name: entity.iquiz_question.collection
+  title: 'iQuiz question list'
+  parent: iquiz.configuration
+  weight: 2
+
+entity.iquiz_quiz_type.collection:
+  route_name: entity.iquiz_quiz_type.collection
+  title: 'Quiz type'
+  parent: iquiz.configuration
+  weight: 3
+
+entity.iquiz_quiz.collection:
+  route_name: entity.iquiz_quiz.collection
+  title: 'Quiz list'
+  parent: iquiz.configuration
+  weight: 4

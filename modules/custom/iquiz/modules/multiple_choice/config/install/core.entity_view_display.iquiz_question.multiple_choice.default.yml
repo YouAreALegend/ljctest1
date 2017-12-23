@@ -1,0 +1,58 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.iquiz_question.multiple_choice.field_multiple_choice_option_a
+    - field.field.iquiz_question.multiple_choice.field_multiple_choice_option_b
+    - field.field.iquiz_question.multiple_choice.field_multiple_choice_option_c
+    - field.field.iquiz_question.multiple_choice.field_multiple_choice_option_d
+    - field.field.iquiz_question.multiple_choice.field_multiple_choice_option_e
+    - iquiz.iquiz_question_type.multiple_choice
+  module:
+    - user
+id: iquiz_question.multiple_choice.default
+targetEntityType: iquiz_question
+bundle: multiple_choice
+mode: default
+content:
+  field_multiple_choice_option_a:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_multiple_choice_option_b:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_multiple_choice_option_c:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_multiple_choice_option_d:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_multiple_choice_option_e:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

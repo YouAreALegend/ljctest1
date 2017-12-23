@@ -1,0 +1,10 @@
+name: 'Single choice'
+type: module
+core: 8.x
+package: iQuiz
+description: 'Provide single chioce question bundle for iQuiz'
+dependencies:
+  - field
+  - iquiz
+  - text
+  - user

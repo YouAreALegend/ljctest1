@@ -1,0 +1,285 @@
+iquiz.admin_iquiz:
+  path: '/admin/iquiz'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'iQuiz'
+  requirements:
+    _permission: 'access administration pages'
+
+iquiz.configuration:
+  path: '/admin/iquiz/config'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Configuration'
+  requirements:
+    _permission: 'access administration pages'
+
+# ===========Question type CRUD============
+iquiz.question_type_add:
+  path: '/admin/iquiz/question-types/add'
+  defaults:
+    _entity_form: 'iquiz_question_type.add'
+    _title: 'Add'
+  requirements:
+    _permission: 'access administration pages'
+
+entity.iquiz_question_type.edit_form:
+  path: '/admin/iquiz/question-types/manage/{iquiz_question_type}'
+  defaults:
+    _entity_form: 'iquiz_question_type.edit'
+  requirements:
+    _permission: 'access administration pages'
+
+entity.iquiz_question_type.delete_form:
+  path: '/admin/iquiz/question-types/manage/{iquiz_question_type}/delete'
+  defaults:
+    _entity_form: 'iquiz_question_type.delete'
+    _title: 'Delete'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+# ===========Question type list============
+entity.iquiz_question_type.collection:
+  path: '/admin/iquiz/question-types'
+  defaults:
+    _entity_list: 'iquiz_question_type'
+    _title: 'Question types'
+  requirements:
+    _permission: 'access administration pages'
+
+# ===========Question list============
+entity.iquiz_question.collection:
+  path: '/admin/iquiz/question-list'
+  defaults:
+    _entity_list: 'iquiz_question'
+    _title: 'iQuiz Question list'
+  requirements:
+    _permission: 'access administration pages'
+
+# ===========Show question types to select one to add subtype question============
+iquiz_question.add_page:
+  path: '/admin/iquiz/question/add'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::addQuestionPage'
+    _title: 'Add iQuiz question'
+  requirements:
+    _permission: 'access administration pages'
+
+# ===========Specific type of question CRUD============
+iquiz_question.add:
+  path: '/admin/iquiz/add/{iquiz_question_type}'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::addQuestion'
+    _title: 'Add iQuiz question'
+  requirements:
+    _permission: 'access administration pages'
+
+entity.iquiz_question.edit_form:
+  path: '/admin/iquiz/question/{iquiz_question}/edit'
+  defaults:
+    _entity_form: iquiz_question.edit
+    _title: 'Edit question'
+  requirements:
+    _permission: 'edit question entity'
+  options:
+    _admin_route: TRUE
+
+entity.iquiz_question.delete_form:
+  path: '/admin/iquiz/question/{iquiz_question}/delete'
+  defaults:
+    _entity_form: iquiz_question.delete
+    _title: 'Delete question'
+  requirements:
+    _permission: 'delete question entity'
+  options:
+    _admin_route: TRUE
+    
+entity.iquiz_question.canonical:
+  path: '/admin/iquiz/question/{iquiz_question}'
+  defaults:
+    _entity_view: 'iquiz_question'
+    _title: 'Question'
+  requirements:
+    _entity_access: 'iquiz_question.view'
+
+# ===========Specify a quiz type to add quiz belongs to it===========
+iquiz.quiz.add_page:
+  path: '/quiz/add'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::addQuizPage'
+    _title: 'Add quiz'
+  requirements:
+    _permission: 'access administration pages'
+
+# ===========Quiz CRUD============
+iquiz.quiz.add:
+  path: '/quiz/add/{iquiz_quiz_type}'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::addQuiz'
+    _title: 'Add quiz'
+  requirements:
+    _permission: 'access administration pages'
+
+entity.iquiz_quiz.collection:
+  path: '/admin/iquiz/quiz-list'
+  defaults:
+    _entity_list: 'iquiz_quiz'
+    _title: 'iQuiz Quiz list'
+  requirements:
+    _permission: 'access administration pages'
+
+entity.iquiz_quiz.canonical:
+  path: '/quiz/{iquiz_quiz}'
+  defaults:
+    _entity_view: 'iquiz_quiz'
+    _title: 'Quiz'
+  requirements:
+    _entity_access: 'iquiz_quiz.view'
+
+entity.iquiz_quiz.edit_form:
+  path: '/quiz/{iquiz_quiz}/edit'
+  defaults:
+    _entity_form: 'iquiz_quiz'
+    _title: 'Edit quiz'
+  requirements:
+    _permission: 'edit quiz entity'
+  options:
+    _admin_route: TRUE
+
+entity.iquiz_quiz.delete_form:
+  path: '/quiz/{iquiz_quiz}/delete'
+  defaults:
+    _entity_form: 'iquiz_quiz.delete'
+    _title: 'Delete quiz'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+# ===========Show question list of current quiz============
+iquiz.quiz.questions:
+  path: '/quiz/{iquiz_quiz}/questions'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::manageQuizQuestionsPage'
+    _title: 'Quiz questions'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE    
+
+# ===========Question instance CRUD============
+entity.iquiz_question_instance.delete_form:
+  path: '/admin/iquiz/question-instance/{iquiz_question_instance}/delete'
+  defaults:
+    _entity_form: 'iquiz_question_instance.delete'
+    _title: 'Delete question instance'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+entity.iquiz_question_instance.canonical:
+  path: '/admin/iquiz/question-instance/{iquiz_question_instance}'
+  defaults:
+    _entity_view: 'iquiz_question_instance'
+    _title: 'Question instance'
+  requirements:
+    _entity_access: 'iquiz_quiz.view'
+
+entity.iquiz_question_instance.edit_form:
+  path: '/admin/iquiz/question-instance/{iquiz_question_instance}/edit'
+  defaults:
+    _entity_form: 'iquiz_question_instance'
+    _title: 'Edit  question instance'
+  requirements:
+    _permission: 'edit quiz entity'
+  options:
+    _admin_route: TRUE
+
+# ===========QuizType routing definition============
+entity.iquiz_quiz_type.collection:
+  path: '/admin/iquiz/quiz_type'
+  defaults:
+    _entity_list: 'iquiz_quiz_type'
+    _title: 'Quiz type'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+entity.iquiz_quiz_type.add_form:
+  path: '/admin/iquiz/quiz_type/add'
+  defaults:
+    _entity_form: 'iquiz_quiz_type.add'
+    _title: 'Add Quiz type'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+entity.iquiz_quiz_type.edit_form:
+  path: '/admin/iquiz/quiz_type/{iquiz_quiz_type}'
+  defaults:
+    _entity_form: 'iquiz_quiz_type.edit'
+    _title: 'Edit Quiz type'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+entity.iquiz_quiz_type.delete_form:
+  path: '/admin/iquiz/quiz_type/{iquiz_quiz_type}/delete'
+  defaults:
+    _entity_form: 'iquiz_quiz_type.delete'
+    _title: 'Delete Quiz type'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE    
+
+# ===========Page of taking a quiz============
+iquiz.take_quiz:
+  path: '/quiz/{quiz_id}/take'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::takeQuiz'
+    _title: 'Take quiz'
+    _title_callback: '\Drupal\iquiz\Controller\IQuizController::getQuizTitle'
+  requirements:
+    _permission: 'access content'
+
+# ===========The current quiz's results submitted by users who has taken part in===========
+iquiz.quiz_results:
+  path: '/quiz/{quiz_id}/results'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::getResultsList'
+    _title: 'Quiz Result'
+    _title_callback: '\Drupal\iquiz\Controller\IQuizController::getQuizTitle'
+  requirements:
+    _permission: 'access content'
+
+# ===========A evaluation page of a specified result===========
+iquiz.evaluate_result:
+  path: '/result/{result_id}/evaluate'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::evaluateResult'
+    _title: 'Evaluate answers'
+  requirements:
+    _permission: 'access content'
+
+# ===========Generate Random Quiz===========
+iquiz.generate_random_quiz:
+  path: '/iquiz/generate_random_quiz'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::generateRandomQuiz'
+  requirements:
+    _permission: 'access content'
+
+# ===========Get Random Quiz===========
+iquiz.get_random_quiz:
+  path: '/iquiz/get_random_quiz'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::getRandomQuiz'
+  requirements:
+    _permission: 'access content'

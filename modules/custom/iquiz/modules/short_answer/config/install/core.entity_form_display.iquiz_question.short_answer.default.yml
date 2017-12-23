@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - iquiz.iquiz_question_type.short_answer
+  module:
+    - text
+id: iquiz_question.short_answer.default
+targetEntityType: iquiz_question
+bundle: short_answer
+mode: default
+hidden: {  }

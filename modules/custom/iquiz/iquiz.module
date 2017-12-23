@@ -1,0 +1,138 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_entity_operation().
+ */
+function iquiz_entity_operation(EntityInterface $entity) {
+    $operations = array();
+    if(strcmp($entity->getEntityTypeId(),'iquiz_quiz') == 0){
+        $operations['translate'] = array(
+            'title' => t('Results'),
+            'url' => \Drupal\Core\Url::fromRoute(
+                'iquiz.quiz_results',
+                array(
+                    'quiz_id' => $entity->id(),
+                )
+            ),
+            'weight' => 50,
+        );
+    }
+
+    return $operations;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function iquiz_theme()
+{
+    $theme = array();
+    $theme['question_add_list'] = [
+        'variables' => array(
+            'content' => NULL,
+        )
+    ];
+    $theme['quiz_add_list'] = [
+        'variables' => array(
+            'content' => NULL,
+        )
+    ];
+    $theme['iquiz_quiz_add'] = [
+        'variables' => array(
+            'question_type_list' => NULL,
+            'quiz_id' => NULL,
+            'question_add_form' => NULL,
+            'quiz_question_list' => NULL,
+        )
+    ];
+
+    return $theme;
+}
+
+/**
+ * Prepares variables for list of available node type templates.
+ *
+ * Default template: question-add-list.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - content: An array of content types.
+ *
+ */
+function template_preprocess_question_add_list(&$variables)
+{
+    $variables['types'] = [];
+    if (!empty($variables['content'])) {
+        foreach ($variables['content'] as $type) {
+            $variables['types'][$type->id()] = [
+                'type' => $type->id(),
+                'add_link' => Link::fromTextAndUrl($type->label(), new Url('iquiz_question.add', ['iquiz_question_type' => $type->id()])),
+                'description' => [
+                    '#markup' => $type->getDescription(),
+                ],
+            ];
+        }
+    }
+}
+
+
+/**
+ * Prepares variables for list of available node type templates.
+ *
+ * Default template: question-add-list.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - content: An array of content types.
+ *
+ */
+function template_preprocess_quiz_add_list(&$variables)
+{
+    $variables['types'] = [];
+    if (!empty($variables['content'])) {
+        foreach ($variables['content'] as $type) {
+            $variables['types'][$type->id()] = [
+                'type' => $type->id(),
+                'add_link' => Link::fromTextAndUrl($type->label(), new Url('iquiz.quiz.add', ['iquiz_quiz_type' => $type->id()])),
+                'description' => [
+                    // '#markup' => $type->getDescription(),
+                ],
+            ];
+        }
+    }
+}
+
+function template_preprocess_iquiz_quiz_add(&$variables)
+{
+    $variables['question_types'] = [];
+    if (!empty($variables['question_type_list'])) {
+        foreach ($variables['question_type_list'] as $question_type) {
+            $variables['question_types'][$question_type->id()] = [
+                'question_types' => $question_type->id(),
+                'add_link' => Link::fromTextAndUrl($question_type->label(), new Url('iquiz.question_instance_add', [
+                    'iquiz_question_type' => $question_type->id(),
+                    'quiz_id' => $variables['quiz_id'],
+                ])),
+                'description' => [
+                    '#markup' => $question_type->getDescription(),
+                ],
+            ];
+        }
+    }
+
+    if (!empty($variables['quiz_question_list'])) {
+        foreach ($variables['quiz_question_list']['bundle'] as $key => $quiz_question) {
+            $variables['quiz_questions'][$key] = [
+                'question_number' => $key,
+                'question' => $quiz_question->get('question')->value,
+                'score' => $variables['quiz_question_list']['score'][$key],
+                'options' => $variables['quiz_question_list']['options'][$key],
+            ];
+        }
+    }
+}
