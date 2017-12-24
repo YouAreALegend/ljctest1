@@ -50,6 +50,7 @@ class TakeQuizForm extends FormBase
             $question = \Drupal::entityTypeManager()
                 ->getStorage('iquiz_question')
                 ->load($questionInstance->get('question_id')->target_id);
+            dpm($questionInstance->get('question_id')->target_id.':'.$question->get('type')->target_id);
 
             $questionPluginManager = \Drupal::service('plugin.manager.iquiz.question_type_plugin');
             $questionPluginInstance = $questionPluginManager->createInstance($question->get('type')->target_id);
