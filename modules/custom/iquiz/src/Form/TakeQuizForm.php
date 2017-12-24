@@ -170,7 +170,7 @@ class TakeQuizForm extends FormBase
     public function resortQuestionInstance(QuestionInstanceInterface $qi1, QuestionInstanceInterface $qi2)
     {
         if ($qi1->get('weight')->value == $qi2->get('weight')->value) {
-            dpm($qi1->id().','.$qi2);
+            dpm($qi1->id().','.$qi2->id());
             return 0;
         }
         return $qi1->get('weight')->value > $qi2->get('weight')->value ? 1 : -1;
