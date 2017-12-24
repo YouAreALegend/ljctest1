@@ -25,13 +25,13 @@ class TakeQuizForm extends FormBase
     /**
      * {@inheritdoc}
      */
-    public function buildForm(array $form, FormStateInterface $form_state, $quiz_id = NULL)
+    public function buildForm(array $form, FormStateInterface $form_state, $quiz_id = NULL, $random = NULL)
     {
         $form['#attached']['library'][] = 'iquiz/iquiz.jQuery';
         $index = 1;
         $isShuffled = 0;
 
-        if (rand(0, 1)) {
+        if (!$random && rand(0, 1)) {
             $questionInstances = $this->shuffleQuestion();
             $isShuffled = 1;
         } else {

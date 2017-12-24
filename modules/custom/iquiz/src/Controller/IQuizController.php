@@ -364,21 +364,21 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
                 ->loadMultiple($questionInstanceIds);
 
             $shuffleGroup = [];
-            foreach ($questionInstances as $key=>$questionInstance) {
+            foreach ($questionInstances as $key => $questionInstance) {
                 $qid = $questionInstance->get('question_id')->target_id;
                 $question = \Drupal::entityTypeManager()->getStorage('iquiz_question')->load($qid);
-                if(!array_key_exists($question->bundle(),$shuffleGroup)){
+                if (!array_key_exists($question->bundle(), $shuffleGroup)) {
                     $shuffleGroup[$question->bundle()] = [];
                 }
                 array_push($shuffleGroup[$question->bundle()], $key);
             }
             foreach ($shuffleGroup as $group) {
                 $array = [];
-                foreach($group as $index){
-                    array_push($array,$questionInstances[$index]);
+                foreach ($group as $index) {
+                    array_push($array, $questionInstances[$index]);
                 }
                 shuffle($array);
-                foreach($group as $key=>$index){
+                foreach ($group as $key => $index) {
                     $questionInstances[$index] = $array[$key];
                 }
             }
@@ -411,7 +411,12 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
             ->loadMultiple();
         $random_id = array_rand($quizes, 1);
         $random_qid = $quizes[$random_id]->id();
-        return $this->redirect('iquiz.take_quiz', ['quiz_id' => $random_qid]);
+        return $this->redirect(
+            'iquiz.take_quiz',
+            [
+                'quiz_id' => $random_qid,
+                'random' => 1,
+            ]);
     }
 
     public function getShuffledPaper()
