@@ -404,6 +404,16 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
         }
     }
 
+    public function getRandomQuiz()
+    {
+        $quizes = \Drupal::entityTypeManager()
+            ->getStorage('iquiz_quiz')
+            ->loadMultiple();
+        $random_id = array_rand($quizes, 1);
+        $random_qid = $quizes[$random_id]->id();
+        return $this->redirect('iquiz.take_quiz', ['quiz_id' => $random_qid]);
+    }
+
     public function getShuffledPaper()
     {
         $path = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . 'ShuffledPaper.xml';
