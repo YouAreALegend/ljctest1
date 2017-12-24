@@ -29,12 +29,11 @@ class TakeQuizForm extends FormBase
     {
         $form['#attached']['library'][] = 'iquiz/iquiz.jQuery';
         $index = 1;
-        $isShuffled = 0;
+        $isShuffled = rand(0, 1);
 
-        if (!$random && rand(0, 1)) {
+        if (!$random && $isShuffled) {
             $questionInstances = $this->shuffleQuestion();
-            $isShuffled = 1;
-        } else {
+        } else if($random || !$isShuffled) {
             $questionInstanceIds = \Drupal::entityQuery('iquiz_question_instance')
                 ->condition('quiz_id', $quiz_id)
                 ->execute();
