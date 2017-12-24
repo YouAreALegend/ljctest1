@@ -171,7 +171,7 @@ class TakeQuizForm extends FormBase
     {
         if ($qi1->get('weight')->value == $qi2->get('weight')->value) {
             dpm($qi1->id().','.$qi2->id());
-            return 0;
+            return $qi1->get('question_id')->target_id > $qi2->get('question_id')->target_id ? 1 : -1;
         }
         return $qi1->get('weight')->value > $qi2->get('weight')->value ? 1 : -1;
     }
