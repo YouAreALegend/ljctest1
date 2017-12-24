@@ -41,7 +41,7 @@ class TakeQuizForm extends FormBase
                 ->execute();
             $questionInstances = \Drupal::entityTypeManager()
                 ->getStorage('iquiz_question_instance')
-                ->loadMultiple($questionInstanceIds);
+                ->loadMultiple($questionInstanceIds);dpm($questionInstances);
             usort($questionInstances, [$this, 'resortQuestionInstance']);
         }
         foreach ($questionInstances as $questionInstance) {
