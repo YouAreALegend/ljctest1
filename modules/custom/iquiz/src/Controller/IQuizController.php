@@ -222,7 +222,7 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
     }
 
     //Output taking quiz page.Including submit result and answer data to their table.
-    public function takeQuiz($quiz_id, $random)
+    public function takeQuiz($quiz_id, $random=NULL)
     {
         $build['form'] = \Drupal::formBuilder()
             ->getForm('\Drupal\iquiz\Form\TakeQuizForm', $quiz_id, $random);
