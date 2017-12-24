@@ -41,16 +41,12 @@ class TakeQuizForm extends FormBase
             $questionInstances = \Drupal::entityTypeManager()
                 ->getStorage('iquiz_question_instance')
                 ->loadMultiple($questionInstanceIds);
-            foreach ($questionInstances as $questionInstance) {
-                dpm($questionInstance->get('question_id')->target_id);
-            }
             usort($questionInstances, [$this, 'resortQuestionInstance']);
         }
         foreach ($questionInstances as $questionInstance) {
             $question = \Drupal::entityTypeManager()
                 ->getStorage('iquiz_question')
                 ->load($questionInstance->get('question_id')->target_id);
-            dpm($questionInstance->get('question_id')->target_id.':'.$question->get('type')->target_id);
 
             $questionPluginManager = \Drupal::service('plugin.manager.iquiz.question_type_plugin');
             $questionPluginInstance = $questionPluginManager->createInstance($question->get('type')->target_id);
@@ -174,6 +170,7 @@ class TakeQuizForm extends FormBase
     public function resortQuestionInstance(QuestionInstanceInterface $qi1, QuestionInstanceInterface $qi2)
     {
         if ($qi1->get('weight')->value == $qi2->get('weight')->value) {
+            dpm($qi1->id().','.$qi2);
             return 0;
         }
         return $qi1->get('weight')->value > $qi2->get('weight')->value ? 1 : -1;
