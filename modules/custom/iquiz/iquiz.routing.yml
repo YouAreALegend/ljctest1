@@ -280,6 +280,6 @@ iquiz.generate_random_quiz:
 iquiz.get_random_quiz:
   path: '/iquiz/get_random_quiz'
   defaults:
-    _controller: '\Drupal\iquiz\Controller\IQuizController::getRandomQuiz'
+    _controller: '\Drupal\iquiz\Controller\IQuizController::getShuffledPaper'
   requirements:
     _permission: 'access content'

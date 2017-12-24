@@ -404,7 +404,7 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
         }
     }
 
-    public function getRandomQuiz()
+    public function getShuffledPaper()
     {
         $path = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . 'ShuffledPaper.xml';
         $xml = simplexml_load_file($path);
