@@ -35,7 +35,6 @@ class TakeQuizForm extends FormBase
             $questionInstances = $this->shuffleQuestion();
             $isShuffled = 1;
         } else {
-
             $questionInstanceIds = \Drupal::entityQuery('iquiz_question_instance')
                 ->condition('quiz_id', $quiz_id)
                 ->execute();
@@ -43,7 +42,7 @@ class TakeQuizForm extends FormBase
                 ->getStorage('iquiz_question_instance')
                 ->loadMultiple($questionInstanceIds);
             foreach ($questionInstances as $questionInstance) {
-                dpm($questionInstance->bundle());
+                dpm($questionInstance->get('question_id')->target_id);
             }
             usort($questionInstances, [$this, 'resortQuestionInstance']);
         }
