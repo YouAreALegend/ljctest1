@@ -9,7 +9,7 @@ use Drupal\Core\Plugin\DefaultPluginManager;
 /**
  * Manages question type plugins.
  *
- * @see hook_question_type_info_alter()
+ * @see hook_question_type_plugins_alter()
  * @see \Drupal\iquiz\Annotation\QuestionTypePlugin
  * @see \Drupal\iquiz\QuestionTypePluginInterface
  * @see \Drupal\iquiz\QuestionTypePluginBase

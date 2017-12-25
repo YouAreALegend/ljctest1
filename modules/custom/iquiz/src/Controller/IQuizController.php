@@ -154,7 +154,7 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
 
     public function manageQuizQuestionsPage(QuizInterface $iquiz_quiz)
     {
-        //first part ：add question links
+        //First part ：add question links
         $items = [];
         foreach ($this->entityTypeManager()
                      ->getStorage('iquiz_question_type')
@@ -174,14 +174,13 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
                 ],
             ];
         }
-        //drupal_set_message(var_export($items, true));
         $build['add_links'] = [
             '#theme' => 'item_list',
             '#items' => $items,
         ];
 
 
-        //second part ：question instance list
+        //Second part ：question instance list
         $header = [
             'question' => t('Question'),
             'score' => t('Score'),
@@ -222,10 +221,10 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
     }
 
     //Output taking quiz page.Including submit result and answer data to their table.
-    public function takeQuiz($quiz_id, $random=NULL)
+    public function takeQuiz($quiz_id, $quiz_type)
     {
         $build['form'] = \Drupal::formBuilder()
-            ->getForm('\Drupal\iquiz\Form\TakeQuizForm', $quiz_id, $random);
+            ->getForm('\Drupal\iquiz\Form\TakeQuizForm', $quiz_id, $quiz_type);
         return $build;
     }
 
@@ -364,21 +363,21 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
                 ->loadMultiple($questionInstanceIds);
 
             $shuffleGroup = [];
-            foreach ($questionInstances as $key => $questionInstance) {
+            foreach ($questionInstances as $key=>$questionInstance) {
                 $qid = $questionInstance->get('question_id')->target_id;
                 $question = \Drupal::entityTypeManager()->getStorage('iquiz_question')->load($qid);
-                if (!array_key_exists($question->bundle(), $shuffleGroup)) {
+                if(!array_key_exists($question->bundle(),$shuffleGroup)){
                     $shuffleGroup[$question->bundle()] = [];
                 }
                 array_push($shuffleGroup[$question->bundle()], $key);
             }
             foreach ($shuffleGroup as $group) {
                 $array = [];
-                foreach ($group as $index) {
-                    array_push($array, $questionInstances[$index]);
+                foreach($group as $index){
+                    array_push($array,$questionInstances[$index]);
                 }
                 shuffle($array);
-                foreach ($group as $key => $index) {
+                foreach($group as $key=>$index){
                     $questionInstances[$index] = $array[$key];
                 }
             }
@@ -415,7 +414,7 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
             'iquiz.take_quiz',
             [
                 'quiz_id' => $random_qid,
-                'random' => 1,
+                'quiz_type' => 'random_quiz',
             ]);
     }
 
@@ -425,7 +424,12 @@ class IQuizController extends ControllerBase implements ContainerInjectionInterf
         $xml = simplexml_load_file($path);
         if ($xml->Id[0] != null && $xml->Id[0] != "") {
             $random_qid = $xml->Id[0];
-            return $this->redirect('iquiz.take_quiz', ['quiz_id' => $random_qid]);
+            return $this->redirect(
+                'iquiz.take_quiz',
+                [
+                    'quiz_id' => $random_qid,
+                    'quiz_type' => 'shuffled_paper_quiz',
+                ]);
         }
         drupal_set_message($this->t("There are no quiz generated yet."));
         return $this->redirect('<front>');

@@ -7,7 +7,7 @@ use Drupal\Component\Annotation\Plugin;
 /**
  * Defines a question type plugin annotation object.
  *
- * Plugin Namespace: Plugin\QuestionType
+ * Plugin Namespace: Plugin\QuestionTypePlugin
  *
  *
  * @see hook_question_type_info_alter()

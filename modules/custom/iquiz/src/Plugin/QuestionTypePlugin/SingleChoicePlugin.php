@@ -183,4 +183,8 @@ class SingleChoicePlugin extends QuestionTypePluginBase
         ];
     }
 
+    public function canShuffleOptions(){
+        return true;
+    }
+
 } 

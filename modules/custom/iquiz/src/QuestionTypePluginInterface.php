@@ -5,8 +5,6 @@ namespace Drupal\iquiz;
 use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\iquiz\FieldValidationRuleSetInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\iquiz\QuestionInstanceInterface;
-use Drupal\iquiz\QuestionInterface;
 
 /**
  * Defines the interface for Question Type Plugin.

@@ -169,7 +169,7 @@ class Quiz extends ContentEntityBase implements QuizInterface
             ->setRequired(TRUE)
             ->setDefaultValue('')
             ->setDisplayOptions('view', array(
-                'label' => 'above',
+                'label' => 'hidden',
                 'type' => 'string',
                 'weight' => -4,
             ))

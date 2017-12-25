@@ -241,7 +241,7 @@ entity.iquiz_quiz_type.delete_form:
 
 # ===========Page of taking a quiz============
 iquiz.take_quiz:
-  path: '/quiz/{quiz_id}/take'
+  path: '/quiz/{quiz_id}/{quiz_type}/take'
   defaults:
     _controller: '\Drupal\iquiz\Controller\IQuizController::takeQuiz'
     _title: 'Take quiz'

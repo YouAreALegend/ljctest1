@@ -2,3 +2,6 @@ services:
   plugin.manager.iquiz.question_type_plugin:
     class: Drupal\iquiz\QuestionTypePluginManager
     parent: default_plugin_manager
+  plugin.manager.iquiz.quiz_type_plugin:
+    class: Drupal\iquiz\QuizTypePluginManager
+    parent: default_plugin_manager
