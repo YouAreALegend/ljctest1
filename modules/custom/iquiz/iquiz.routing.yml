@@ -291,3 +291,11 @@ iquiz.get_shuffled_paper:
     _controller: '\Drupal\iquiz\Controller\IQuizController::getShuffledPaper'
   requirements:
     _permission: 'access content'
+
+# ===========Get Random Question Quiz===========
+iquiz.get_random_question_quiz:
+  path: '/iquiz/get_random_question_quiz'
+  defaults:
+    _controller: '\Drupal\iquiz\Controller\IQuizController::getRandomQuestionQuiz'
+  requirements:
+    _permission: 'access content'
