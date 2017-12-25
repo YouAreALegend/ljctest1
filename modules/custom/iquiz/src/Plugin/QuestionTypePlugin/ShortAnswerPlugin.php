@@ -166,7 +166,7 @@ class ShortAnswerPlugin extends QuestionTypePluginBase
     }
 
     //Callback function.Return score form element showing when first evaluation started.
-    public function evaluate(array &$form, AnswerInterface $answer, QuestionInstanceInterface $questionInstance)
+    public function evaluate(array $form, AnswerInterface $answer, QuestionInstanceInterface $questionInstance)
     {
         $form[$answer->id()][$answer->id()] = array(
             '#prefix' => "<div><b>" . $this->t('Need to evaluate this answer\'s score.') . "</b></div><div>",
